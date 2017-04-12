@@ -1,7 +1,9 @@
-package com.goldenratio.bbs;
+package com.goldenratio.bbs.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.goldenratio.bbs.R;
 
 public class MainActivity extends Activity {
 
