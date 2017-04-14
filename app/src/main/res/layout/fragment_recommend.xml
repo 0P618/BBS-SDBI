@@ -1,24 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.goldenratio.bbs.ui.fragment.RecommendFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.goldenratio.bbs.ui.fragment.RecommendFragment">
 
-    <GridView
-        android:id="@+id/gv_title"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="90dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp"/>
+        android:layout_height="match_parent"
+        android:text="推荐"/>
 
-    <ListView
-        android:id="@+id/lv_show"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</LinearLayout>
+</RelativeLayout>
