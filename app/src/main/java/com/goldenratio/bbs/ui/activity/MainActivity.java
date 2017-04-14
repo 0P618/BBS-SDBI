@@ -4,14 +4,16 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.goldenratio.bbs.R;
 import com.goldenratio.bbs.adapter.MainPagerAdapter;
 import com.goldenratio.bbs.ui.fragment.BBSFragment;
+import com.goldenratio.bbs.ui.fragment.OtherFragment;
 import com.goldenratio.bbs.ui.fragment.RecommendFragment;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -28,10 +30,11 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private List<String> mDataList;
     private List<Fragment> mFragmentList;
+    private long lastTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +43,14 @@ public class MainActivity extends FragmentActivity {
 
         initData();
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new MainPagerAdapter(mDataList));
+        mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),mFragmentList));
 
         initMagicIndicator();
     }
 
+    // 初始化数据，标题与 VP 关联的 Fragment
     private void initData() {
+        lastTime = 0;
         mDataList = new ArrayList<>();
         mDataList.add("推荐");
         mDataList.add("论坛");
@@ -53,8 +58,10 @@ public class MainActivity extends FragmentActivity {
         mFragmentList = new ArrayList<>();
         mFragmentList.add(new RecommendFragment());
         mFragmentList.add(new BBSFragment());
+        mFragmentList.add(new OtherFragment());
     }
 
+    // 初始化顶部 Tab
     private void initMagicIndicator() {
         MagicIndicator magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
         CommonNavigator commonNavigator = new CommonNavigator(this);
@@ -95,4 +102,15 @@ public class MainActivity extends FragmentActivity {
         ViewPagerHelper.bind(magicIndicator, mViewPager);
     }
 
+    // 按两次退出
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - lastTime >= 2000){
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            lastTime = System.currentTimeMillis();
+        }else {
+            finish();
+            System.exit(0);
+        }
+    }
 }
