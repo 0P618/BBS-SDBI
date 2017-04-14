@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ListView;
 
 import com.goldenratio.bbs.R;
 
@@ -15,18 +13,18 @@ import com.goldenratio.bbs.R;
  * 推荐页面
  */
 public class RecommendFragment extends Fragment {
-    private GridView mGvTitle;
-    private ListView mLvShow;
+
+
+    public RecommendFragment() {
+        // Required empty public constructor
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recommend, container, false);
-
-        mGvTitle = (GridView) view.findViewById(R.id.gv_title);
-        mLvShow = (ListView) view.findViewById(R.id.lv_show);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_recommend, container, false);
     }
 
 }
