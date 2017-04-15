@@ -1,8 +1,11 @@
 package com.goldenratio.bbs.ui.activity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -30,11 +33,12 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private ViewPager mViewPager;
     private List<String> mDataList;
     private List<Fragment> mFragmentList;
     private long lastTime;
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
         initData();
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),mFragmentList));
+        mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), mFragmentList));
+        mViewPager.addOnPageChangeListener(this);
 
         initMagicIndicator();
+
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        // 默认隐藏
+        ObjectAnimator.ofFloat(mFab, "translationY", 0.0f, 500.0f).setDuration(0).start();
     }
 
     // 初始化数据，标题与 VP 关联的 Fragment
@@ -105,12 +121,45 @@ public class MainActivity extends AppCompatActivity {
     // 按两次退出
     @Override
     public void onBackPressed() {
-        if (System.currentTimeMillis() - lastTime >= 2000){
+        if (System.currentTimeMillis() - lastTime >= 2000) {
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
             lastTime = System.currentTimeMillis();
-        }else {
+        } else {
             finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        // 正在滑动
+        if (state == 1 && mViewPager.getCurrentItem() == 1) {
+            hideFab();
+        }
+        // 滑动结束
+        if (state == 2 && mViewPager.getCurrentItem() == 1)
+            showFab();
+    }
+
+    public void hideFab() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(mFab, "translationY", 0.0f, 500.0f);
+        animator.setDuration(300);
+        animator.start();
+    }
+
+    public void showFab() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(mFab, "translationY", 500.0f, 0.0f);
+        animator.setDuration(800);
+        animator.start();
     }
 }
