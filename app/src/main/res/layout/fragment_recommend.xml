@@ -25,7 +25,9 @@
             <com.goldenratio.bbs.ui.customView.ScrollListView
                 android:id="@+id/recommend_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
         </LinearLayout>
 
     </ScrollView>

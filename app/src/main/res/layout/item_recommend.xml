@@ -2,33 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:padding="20dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="10dp">
 
     <TextView
         android:id="@+id/title_item_recommend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/textColor"
+        android:layout_marginBottom="10dp"
         android:textSize="16sp"
         android:text="主标题"/>
     <TextView
         android:id="@+id/small_title_item_recommend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:text="副标题"/>
     <ImageView
         android:id="@+id/image_item_recommend"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
+        android:scaleType="center"
         android:maxHeight="110dp"/>
     <RelativeLayout
         android:id="@+id/particular_layout"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="20dp"
-        >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="20dp">
         <TextView
             android:id="@+id/author_item_recommend"
             android:layout_width="wrap_content"
@@ -39,33 +41,7 @@
             android:scrollHorizontally="false"
             android:textSize="12sp"
             android:text="张三"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="阅读"/>
-        <TextView
-            android:id="@+id/look_num_body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="评论"/>
-        <TextView
-            android:id="@+id/comment_num_item_recommend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:textSize="12sp"
-            android:text="12"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:textSize="12sp"
-            android:text="点赞"/>
+        <!--此处倒序-->
         <TextView
             android:id="@+id/like_num_item_recommend"
             android:layout_width="wrap_content"
@@ -74,5 +50,42 @@
             android:layout_alignParentRight="true"
             android:textSize="12sp"
             android:text="15"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/like_num_item_recommend"
+            android:textSize="12sp"
+            android:text="点赞"/>
+        <TextView
+            android:id="@+id/comment_num_item_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/like_num_item_recommend"
+            android:textSize="12sp"
+            android:text="12"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/comment_num_item_recommend"
+            android:textSize="12sp"
+            android:text="评论"/>
+        <TextView
+            android:id="@+id/look_num_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/comment_num_item_recommend"
+            android:textSize="12sp"
+            android:text="10"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/look_num_body"
+            android:textSize="12sp"
+            android:text="阅读"/>
     </RelativeLayout>
 </LinearLayout>

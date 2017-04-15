@@ -1,6 +1,7 @@
 package com.goldenratio.bbs.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,7 +47,16 @@ public class RecommendFragment extends Fragment {
         listDateLoader();
         mRecommendListAdapter = new RecommendListAdapter(listDate,getActivity());
         recommendListView.setAdapter(mRecommendListAdapter);
-
+        recommendListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), "跳转到条目"+ i, Toast.LENGTH_SHORT).show();
+//                RecommendBean b= (RecommendBean) recommendListView.getItemAtPosition(i);
+//                Intent intent=new Intent(this,that.class);
+//                intent.put("");
+//                startActivity(intent);
+            }
+        });
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
