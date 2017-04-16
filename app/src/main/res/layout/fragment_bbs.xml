@@ -1,24 +1,40 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sw_posts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.goldenratio.bbs.ui.fragment.RecommendFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <com.goldenratio.bbs.ui.customView.ScrollGridView
+                android:id="@+id/gv_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="com.goldenratio.bbs.ui.fragment.RecommendFragment">
+                android:layout_height="wrap_content"
+                android:columnWidth="90dp"
+                android:gravity="center"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="10dp"/>
 
-    <GridView
-        android:id="@+id/gv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnWidth="90dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lv_show"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gv_title"/>
+        </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_show"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/gv_title"/>
+    </ScrollView>
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
