@@ -4,27 +4,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_temp"
+        style="@style/ImmersiveStatusBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#455a64"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
 
         <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/magic_indicator"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <android.support.v4.view.ViewPager
-        android:layout_below="@id/ll_temp"
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_temp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

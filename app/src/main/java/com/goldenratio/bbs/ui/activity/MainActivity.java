@@ -2,14 +2,15 @@ package com.goldenratio.bbs.ui.activity;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -33,12 +34,13 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private ViewPager mViewPager;
     private List<String> mDataList;
     private List<Fragment> mFragmentList;
     private long lastTime;
     private FloatingActionButton mFab;
+    private ImageView mIvMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         setContentView(R.layout.activity_main);
 
         initData();
+
+
+        mIvMenu = (ImageView) findViewById(R.id.iv_menu);
+        mIvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UserMenuActivity.class));
+            }
+        });
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(), mFragmentList));
         mViewPager.addOnPageChangeListener(this);
@@ -132,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -162,4 +172,5 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         animator.setDuration(800);
         animator.start();
     }
+
 }
